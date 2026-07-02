@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About · Embermint Breadsmith House</title>
+  <!-- Fonts & minimal icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #fbf7f0;
+      color: #1f1e1b;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1.8rem 0 4rem;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #1f1e1b;
+    }
+    h1 {
+      font-size: 3.6rem;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 2.6rem;
+      margin: 2.8rem 0 1.2rem;
+      border-bottom: 2px solid #dcd2c2;
+      padding-bottom: 0.4rem;
+    }
+    h3 {
+      font-size: 1.8rem;
+      margin: 2rem 0 0.8rem;
+      color: #3d352b;
+    }
+    p {
+      margin-bottom: 1.4rem;
+      font-size: 1.1rem;
+      max-width: 75ch;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: #6b5f51;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border-left: 4px solid #c9b5a0;
+      padding-left: 0.8rem;
+      margin: 1rem 0 1.8rem;
+    }
+    a {
+      color: #7d5f44;
+      text-decoration: none;
+      border-bottom: 1px dotted #c9b5a0;
+    }
+    a:hover {
+      color: #3d2c1f;
+      border-bottom: 1px solid #7d5f44;
+    }
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.2rem 0 1.8rem;
+      border-bottom: 1px solid #e3d7ca;
+      flex-wrap: wrap;
+    }
+    .brand {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.2rem;
+      letter-spacing: -0.02em;
+      color: #2b231c;
+    }
+    .brand small {
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      color: #6b5f51;
+      margin-left: 0.6rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      font-weight: 400;
+      font-size: 1rem;
+      color: #3d352b;
+    }
+    .nav-links a {
+      border-bottom: none;
+    }
+    .about-hero {
+      padding: 2rem 0 1rem;
+    }
+    .about-hero p {
+      font-size: 1.3rem;
+      color: #3d352b;
+      max-width: 70ch;
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      background: #f3ede6;
+      padding: 2rem 2.2rem;
+      border-radius: 40px 8px 40px 8px;
+      margin: 2rem 0;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.8rem;
+      color: #2b231c;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #5b4f42;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 2.8rem;
+    }
+    .team-card {
+      background: #fffcf8;
+      border-radius: 28px 8px 28px 8px;
+      padding: 1.6rem 1.4rem;
+      border: 1px solid #ede5da;
+    }
+    .team-card h3 {
+      margin: 0.2rem 0 0.2rem;
+      font-size: 1.6rem;
+    }
+    .team-card .role {
+      font-weight: 500;
+      color: #7d6b59;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+    }
+    .team-card p {
+      font-size: 0.98rem;
+      margin: 0.8rem 0 0;
+    }
+    .featured-quote {
+      background: #2b231c;
+      color: #f3ede6;
+      padding: 3rem 2.5rem;
+      border-radius: 40px 8px 40px 8px;
+      margin: 3rem 0;
+    }
+    .featured-quote h2 {
+      color: #f3ede6;
+      border-bottom: 2px solid #6b5f51;
+      padding-bottom: 0.4rem;
+      margin-top: 0;
+    }
+    .featured-quote p {
+      font-size: 1.4rem;
+      font-style: italic;
+      max-width: 70ch;
+      color: #dccfc0;
+    }
+    .featured-quote .attribution {
+      font-style: normal;
+      font-weight: 300;
+      color: #b7a692;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.8rem;
+    }
+    footer {
+      border-top: 1px solid #dcd2c2;
+      padding-top: 2.8rem;
+      margin-top: 2.8rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: #5b4f42;
+    }
+    @media (max-width: 800px) {
+      .site-header {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      h1 { font-size: 2.8rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- header (exactly as main page) -->
+  <header class="site-header">
+    <div class="brand">Embermint Breadsmith <small>·House</small></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms Of Privacy</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="cookies.html">Cookies Policy</a>
+    </div>
+  </header>
+
+  <!-- ABOUT HERO -->
+  <section class="about-hero">
+    <h1>About Embermint</h1>
+    <p class="meta">🔥 hearth &amp; heritage · founded 2018</p>
+    <p>Embermint Breadsmith House is a collective of bakers, writers, and fermentation enthusiasts. We believe bread is a living archive — of grain, climate, and human hands. Our work bridges traditional hearth baking with modern science, all in service of the perfect crust and an open, honeycomb crumb.</p>
+    <p>From our small bakery in the Pacific Northwest, we’ve built a global community of sourdough bakers who share our obsession with flour, water, salt, and time. This site is our journal, our lab, and our love letter to bread.</p>
+  </section>
+
+  <!-- STATS / NUMBERS -->
+  <div class="stat-grid">
+    <div class="stat-item">
+      <div class="stat-number">12k+</div>
+      <div class="stat-label">bakers in community</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">400+</div>
+      <div class="stat-label">recipes &amp; guides</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">8</div>
+      <div class="stat-label">years of hearth baking</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">wild fermentation</div>
+    </div>
+  </div>
+
+  <!-- OUR PHILOSOPHY & MISSION -->
+  <h2>Our philosophy</h2>
+  <p>We champion bread that is <strong>slow, honest, and deeply flavorful</strong>. That means long fermentations, locally milled grains, and a reverence for the natural microbiome. We don’t chase trends — we chase <strong>depth, texture, and the quiet joy of a well-baked loaf</strong>.</p>
+  <p>Our mission is to demystify sourdough and make artisan bread accessible. Whether you’re a first-time baker or a seasoned professional, Embermint is your companion in the journey from flour to fire.</p>
+
+  <!-- MEET THE TEAM (BREADSMITHS) -->
+  <h2>Breadsmiths &amp; collaborators</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="role">Head Baker · founder</div>
+      <h3>Elias G. Rye</h3>
+      <p>Former pastry chef turned sourdough evangelist. Elias has been nurturing starters for over a decade and believes in the alchemy of fermentation.</p>
+    </div>
+    <div class="team-card">
+      <div class="role">Grain specialist</div>
+      <h3>Mira H. Einkorn</h3>
+      <p>Mira works with small mills to source heritage grains. She’s obsessed with spelt, emmer, and the flavor profiles of ancient wheats.</p>
+    </div>
+    <div class="team-card">
+      <div class="role">Writer &amp; baker</div>
+      <h3>Jules O. Crumb</h3>
+      <p>Jules documents the craft — from scoring patterns to crumb analysis. Their writing appears in Bread Magazine and Ferment Quarterly.</p>
+    </div>
+    <div class="team-card">
+      <div class="role">Dough whisperer</div>
+      <h3>Samir B. Levain</h3>
+      <p>Samir handles the hydration experiments. He’s the one who convinced us that 100% hydration isn’t always the answer. (It’s about the flour.)</p>
+    </div>
+  </div>
+
+  <!-- QUOTE / TESTIMONIAL (with visual depth) -->
+  <div class="featured-quote">
+    <h2>What bakers say</h2>
+    <p>“Embermint taught me to listen to my starter. The guides are precise, poetic, and they actually work. My loaves have never been better.”</p>
+    <p class="attribution">— Priya K., Toronto · home baker since 2020</p>
+  </div>
+
+  <!-- ADDITIONAL CONTEXT : TIMELINE / MILESTONES (as a simple list with flair) -->
+  <h2>Milestones</h2>
+  <ul style="list-style: none; padding: 0; margin: 1.6rem 0 2rem;">
+    <li style="padding: 0.6rem 0; border-bottom: 1px solid #e3d7ca; display: flex; gap: 1.2rem;">
+      <span style="font-weight: 600; color: #7d5f44;">2018</span> 
+      <span>Embermint founded in a small cottage kitchen with a single starter named “Hestia.”</span>
+    </li>
+    <li style="padding: 0.6rem 0; border-bottom: 1px solid #e3d7ca; display: flex; gap: 1.2rem;">
+      <span style="font-weight: 600; color: #7d5f44;">2020</span> 
+      <span>Launched the online Breadsmith community — 500 bakers joined within the first month.</span>
+    </li>
+    <li style="padding: 0.6rem 0; border-bottom: 1px solid #e3d7ca; display: flex; gap: 1.2rem;">
+      <span style="font-weight: 600; color: #7d5f44;">2023</span> 
+      <span>Published the “Hydration Atlas,” a comprehensive guide to water ratios in artisan bread.</span>
+    </li>
+    <li style="padding: 0.6rem 0; display: flex; gap: 1.2rem;">
+      <span style="font-weight: 600; color: #7d5f44;">2026</span> 
+      <span>Embermint Breadsmith House becomes a hub for 12,000+ bakers worldwide. Still kneading.</span>
+    </li>
+  </ul>
+
+  <!-- NEWSLETTER (same as main page, but contextual) -->
+  <div class="newsletter" style="background: #2b231c; color: #f3ede6; padding: 3rem 2.5rem; border-radius: 40px 8px 40px 8px; margin: 3.2rem 0;">
+    <h2 style="color: #f3ede6; border-bottom: 2px solid #6b5f51; padding-bottom: 0.4rem; margin-top: 0;">Join the Embermint letter</h2>
+    <p style="color: #dccfc0; max-width: 60ch;">Weekly bread wisdom, fermentation notes, and hearth stories. No spam, just flour.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem;">
+      <input type="email" placeholder="your email" value="hello@baker.com" style="padding: 0.8rem 1.2rem; border: none; border-radius: 60px; font-size: 1rem; width: 260px; background: #f3ede6; color: #1f1e1b;">
+      <button style="background: #c9b5a0; border: none; padding: 0.8rem 2.2rem; border-radius: 60px; font-weight: 600; font-size: 1rem; margin-left: 0.6rem; color: #1f1e1b; cursor: pointer;">Subscribe</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© Embermint Breadsmith House · 2026</div>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Archives</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

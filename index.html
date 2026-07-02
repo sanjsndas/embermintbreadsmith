@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embermint Breadsmith House · Artisan Bread Authority</title>
+  <!-- Fonts & minimal icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #fbf7f0;
+      color: #1f1e1b;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 0 1.5rem;
+    }
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1.8rem 0 4rem;
+    }
+    /* unique typography & spacing */
+    h1, h2, h3, h4 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #1f1e1b;
+    }
+    h1 {
+      font-size: 3.6rem;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 2.6rem;
+      margin: 2.8rem 0 1.2rem;
+      border-bottom: 2px solid #dcd2c2;
+      padding-bottom: 0.4rem;
+    }
+    h3 {
+      font-size: 1.8rem;
+      margin: 2rem 0 0.8rem;
+      color: #3d352b;
+    }
+    p {
+      margin-bottom: 1.4rem;
+      font-size: 1.1rem;
+      max-width: 75ch;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: #6b5f51;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border-left: 4px solid #c9b5a0;
+      padding-left: 0.8rem;
+      margin: 1rem 0 1.8rem;
+    }
+    a {
+      color: #7d5f44;
+      text-decoration: none;
+      border-bottom: 1px dotted #c9b5a0;
+    }
+    a:hover {
+      color: #3d2c1f;
+      border-bottom: 1px solid #7d5f44;
+    }
+    /* header / nav */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.2rem 0 1.8rem;
+      border-bottom: 1px solid #e3d7ca;
+      flex-wrap: wrap;
+    }
+    .brand {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.2rem;
+      letter-spacing: -0.02em;
+      color: #2b231c;
+    }
+    .brand small {
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      color: #6b5f51;
+      margin-left: 0.6rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      font-weight: 400;
+      font-size: 1rem;
+      color: #3d352b;
+    }
+    .nav-links a {
+      border-bottom: none;
+    }
+    /* hero */
+    .hero {
+      padding: 2.8rem 0 2.2rem;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .hero h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+    }
+    .hero-sub {
+      font-size: 1.3rem;
+      color: #3d352b;
+      max-width: 65ch;
+      margin: 1.2rem 0 1.8rem;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+      margin-top: 1.4rem;
+      font-weight: 500;
+      color: #4d3f31;
+    }
+    .hero-tags span {
+      background: #e9dfd2;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+    }
+    .hero-img {
+      background: #dcd2c2;
+      padding: 0.8rem;
+      border-radius: 28px 8px 28px 8px;
+    }
+    .hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 20px 4px 20px 4px;
+    }
+    /* cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2.2rem;
+      margin: 2.2rem 0;
+    }
+    .card {
+      background: #fffcf8;
+      border-radius: 24px 8px 24px 8px;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 8px 18px -10px rgba(0,0,0,0.08);
+      transition: 0.2s;
+      border: 1px solid #ede5da;
+    }
+    .card:hover {
+      background: #fff9f2;
+      border-color: #d4c3b0;
+    }
+    .card h3 {
+      font-size: 1.6rem;
+      margin-top: 0.2rem;
+      margin-bottom: 0.4rem;
+    }
+    .card .excerpt {
+      font-size: 1rem;
+      color: #3f3730;
+    }
+    .card .tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #7d6b59;
+      border: 1px solid #d4c3b0;
+      padding: 0.1rem 0.8rem;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    /* category pills */
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.8rem;
+      margin: 1.8rem 0 0.8rem;
+    }
+    .category-pills a {
+      background: #ece2d6;
+      padding: 0.2rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 500;
+      border-bottom: none;
+      color: #2b231c;
+    }
+    .category-pills a:hover {
+      background: #dccfc0;
+    }
+    /* inline featured image */
+    .featured-inline {
+      display: flex;
+      gap: 2rem;
+      background: #f3ede6;
+      border-radius: 28px 8px 28px 8px;
+      padding: 1.6rem 2rem;
+      margin: 2.4rem 0;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .featured-inline img {
+      width: 160px;
+      border-radius: 16px 4px 16px 4px;
+      background: #c9b5a0;
+    }
+    .featured-inline div {
+      flex: 1;
+    }
+    .featured-inline h3 {
+      margin-top: 0;
+    }
+    /* table & checklist */
+    .table-wrap {
+      background: #f3ede6;
+      border-radius: 20px 4px 20px 4px;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+    }
+    th {
+      text-align: left;
+      padding: 0.8rem 0.4rem 0.4rem 0;
+      font-weight: 600;
+      border-bottom: 2px solid #b7a692;
+    }
+    td {
+      padding: 0.8rem 0.4rem 0.8rem 0;
+      border-bottom: 1px solid #dacfc1;
+    }
+    .checklist {
+      list-style: none;
+      margin: 1.6rem 0;
+    }
+    .checklist li {
+      padding: 0.6rem 0 0.6rem 2.2rem;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%237d5f44" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
+      background-size: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+    .faq-item {
+      margin: 1.6rem 0;
+      border-bottom: 1px solid #e3d7ca;
+      padding-bottom: 1.2rem;
+    }
+    .faq-item h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+    .faq-item p {
+      margin-bottom: 0.2rem;
+      color: #2b231c;
+    }
+    .newsletter {
+      background: #2b231c;
+      color: #f3ede6;
+      padding: 3rem 2.5rem;
+      border-radius: 40px 8px 40px 8px;
+      margin: 3.2rem 0;
+    }
+    .newsletter h2 {
+      color: #f3ede6;
+      border-bottom: 2px solid #6b5f51;
+      padding-bottom: 0.4rem;
+      margin-top: 0;
+    }
+    .newsletter input {
+      padding: 0.8rem 1.2rem;
+      border: none;
+      border-radius: 60px;
+      font-size: 1rem;
+      width: 260px;
+      background: #f3ede6;
+      color: #1f1e1b;
+    }
+    .newsletter button {
+      background: #c9b5a0;
+      border: none;
+      padding: 0.8rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-left: 0.6rem;
+      color: #1f1e1b;
+      cursor: pointer;
+    }
+    footer {
+      border-top: 1px solid #dcd2c2;
+      padding-top: 2.8rem;
+      margin-top: 2.8rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: #5b4f42;
+    }
+    @media (max-width: 800px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .site-header {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      h1 { font-size: 2.8rem; }
+    }
+    /* minimal images: only 3-4 used */
+    .infographic-placeholder {
+      background: #e3d7ca;
+      padding: 1.2rem 1.8rem;
+      border-radius: 28px 4px 28px 4px;
+      font-weight: 500;
+      color: #2b231c;
+      margin: 2rem 0;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- header -->
+  <header class="site-header">
+    <div class="brand">Embermint Breadsmith <small>·House</small></div>
+    <div class="nav-links">
+     <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="terms.html">Terms Of Privacy</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+					<li><a href="cookies.html">Cookies Policy</a></li>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <h1>Bread · fire · flour · patience</h1>
+        <p class="hero-sub">The Embermint Breadsmith House is a sanctuary for bakers who seek depth, crust, and crumb. From wild fermentation to hearth baking — we document the craft.</p>
+        <div class="hero-tags">
+          <span>#sourdough</span>
+          <span>#hearthbread</span>
+          <span>#fermentation</span>
+          <span>#scoring</span>
+          <span>#hydration</span>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='280' viewBox='0 0 400 280'%3E%3Crect width='400' height='280' fill='%23b7a692'/%3E%3Ccircle cx='200' cy='140' r='80' fill='%23dccfc0'/%3E%3Cpath d='M120 120 L160 90 L200 120 L240 90 L280 120 L260 180 L140 180 L120 120' fill='%23c9b5a0'/%3E%3C/svg%3E"
+             alt="Artisan bread hearth" width="400" height="280">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLES (card grid) -->
+  <h2>Featured articles</h2>
+  <div class="card-grid">
+    <div class="card">
+      <span class="tag">Sourdough</span>
+      <h3>The 100% hydration myth</h3>
+      <div class="excerpt">Why stiff starters build better flavor, and how to adjust your feeding routine for a robust culture.</div>
+    </div>
+    <div class="card">
+      <span class="tag">Baking science</span>
+      <h3>Steam, spring & oven glow</h3>
+      <div class="excerpt">Mastering the first 5 minutes of baking: steam injection, scoring depth, and radiant heat.</div>
+    </div>
+    <div class="card">
+      <span class="tag">Guide</span>
+      <h3>Whole wheat · ancient grains</h3>
+      <div class="excerpt">Spelt, einkorn, and rye: hydration adjustments, fermentation times, and handling tips.</div>
+    </div>
+  </div>
+
+  <!-- BEGINNER GUIDES + EXPERT RESOURCES (inline) -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2.8rem 0;">
+    <div style="background: #f3ede6; padding: 2rem; border-radius: 28px 4px 28px 4px;">
+      <h3 style="margin-top: 0;">Beginner’s hearth</h3>
+      <p>Start here: flour, water, salt, and time. Our <strong>5-day sourdough starter</strong> guide walks you through every bubble and fold.</p>
+      <ul style="list-style: none; padding-left: 0;">
+        <li style="padding: 0.2rem 0;">→ Day 1: mixing & resting</li>
+        <li style="padding: 0.2rem 0;">→ Day 2: first feed</li>
+        <li style="padding: 0.2rem 0;">→ Day 3: peak activity</li>
+        <li style="padding: 0.2rem 0;">→ Day 4: leaven build</li>
+        <li style="padding: 0.2rem 0;">→ Day 5: bake day</li>
+      </ul>
+    </div>
+    <div style="background: #ede5da; padding: 2rem; border-radius: 28px 4px 28px 4px;">
+      <h3 style="margin-top: 0;">Expert resources</h3>
+      <p>For the seasoned baker: hydration calculators, fermentation tables, and <strong>microclimate management</strong> for your proofing box.</p>
+      <div class="category-pills" style="margin-top: 0.4rem;">
+        <a href="#">hydration tool</a>
+        <a href="#">ferment chart</a>
+        <a href="#">dough temp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPULAR CATEGORIES + TRENDING -->
+  <h2>Popular categories</h2>
+  <div class="category-pills">
+    <a href="#">Sourdough</a>
+    <a href="#">Rye & dark</a>
+    <a href="#">Focaccia</a>
+    <a href="#">Baguette</a>
+    <a href="#">Whole grain</a>
+    <a href="#">Enriched dough</a>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 2.4rem; margin: 2.4rem 0;">
+    <div style="flex: 1; min-width: 220px;">
+      <h3>Trending topics</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li style="padding: 0.4rem 0;">🔥 Overnight cold ferment</li>
+        <li style="padding: 0.4rem 0;">🔥 Autolyse vs. fermentolyse</li>
+        <li style="padding: 0.4rem 0;">🔥 High-hydration handling</li>
+        <li style="padding: 0.4rem 0;">🔥 Dutch oven vs. steel</li>
+      </ul>
+    </div>
+    <div style="flex: 2; min-width: 260px;">
+      <h3>Latest articles</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li style="padding: 0.4rem 0; border-bottom: 1px solid #e3d7ca;">The art of scoring: patterns that bloom</li>
+        <li style="padding: 0.4rem 0; border-bottom: 1px solid #e3d7ca;">Rye sourdough: when to add caraway</li>
+        <li style="padding: 0.4rem 0; border-bottom: 1px solid #e3d7ca;">Tartine vs. no-knead: which method wins?</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- IN-DEPTH TUTORIAL (featured article with image) -->
+  <div class="featured-inline">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23b7a692'/%3E%3Ccircle cx='80' cy='80' r='45' fill='%23dccfc0'/%3E%3Cpath d='M60 50 L100 50 L100 80 L60 80' fill='%23c9b5a0'/%3E%3C/svg%3E" alt="tutorial">
+    <div>
+      <h3>In-depth tutorial: perfect sourdough crumb</h3>
+      <p>Step-by-step from levain to loaf. We dissect bulk fermentation, coil folds, and shaping for an open, lacy crumb. Includes a checklist for each stage.</p>
+      <ul class="checklist" style="margin: 0.4rem 0;">
+        <li>Levain build (1:5:5)</li>
+        <li>Autolyse 60 min</li>
+        <li>3 coil folds, 30 min apart</li>
+        <li>Bulk rise 70% volume increase</li>
+        <li>Pre-shape & bench rest</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- RESOURCE HUB: TABLE + INFOGRAPHIC (only 4th image) -->
+  <h2>Resource hub</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Hydration</th><th>Flour type</th><th>Ferment time</th><th>Bake temp</th></tr>
+      <tr><td>70%</td><td>Bread flour</td><td>4h bulk</td><td>230°C</td></tr>
+      <tr><td>80%</td><td>High-extraction</td><td>5h bulk</td><td>240°C</td></tr>
+      <tr><td>90%</td><td>Whole wheat</td><td>6h bulk</td><td>220°C</td></tr>
+    </table>
+  </div>
+  <div class="infographic-placeholder">
+    📊 infographic: fermentation temperature × time (optimal window 24-26°C)
+  </div>
+
+  <!-- FAQ -->
+  <h2>Frequently asked questions</h2>
+  <div class="faq-item">
+    <h4>Why is my sourdough not rising?</h4>
+    <p>Check starter activity, water temperature, and bulk fermentation time. Use the float test.</p>
+  </div>
+  <div class="faq-item">
+    <h4>Can I use whole wheat flour in any recipe?</h4>
+    <p>Yes, but adjust hydration by 5-10% and allow longer autolyse. Whole grains absorb more water.</p>
+  </div>
+  <div class="faq-item">
+    <h4>What is the best scoring depth?</h4>
+    <p>¼ to ½ inch, at a 30° angle. This creates an ear and controls oven spring.</p>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter">
+    <h2>Get the Embermint letter</h2>
+    <p style="color: #dccfc0; max-width: 60ch;">Weekly bread wisdom, fermentation notes, and hearth stories. No spam, just flour.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem;">
+      <input type="email" placeholder="your email" value="hello@baker.com">
+      <button>Subscribe</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© Embermint Breadsmith House · 2026</div>
+    <div style="display: flex; gap: 1.8rem;">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy</a>
+      <a href="#">Archives</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
